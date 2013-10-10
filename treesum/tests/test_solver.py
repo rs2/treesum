@@ -79,6 +79,12 @@ class TestSolver(unittest2.TestCase):
             text = """22"""
             self.initFile(text)
             Solver(self.fileName).solve()
+
+    def testBadTree3(self):
+        with self.assertRaises(TreeDefinitionException):
+            text = """1 (1 ())"""
+            self.initFile(text)
+            Solver(self.fileName).solve()
             
     def testBigTree(self):
         # Ok, I chose a fun approach with using eval() and recursing the tree on the stack

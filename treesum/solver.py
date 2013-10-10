@@ -35,7 +35,7 @@ class Tree(object):
         elif len(args)==3:
             self.value, self.left, self.right = args
         else:
-            raise ValueError('A tree can either be empty () or a 3-tuple')
+            raise TreeDefinitionException('A tree can either be empty () or a 3-tuple')
     
     def getRootLeafPaths(self):
         """
