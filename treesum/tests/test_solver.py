@@ -30,6 +30,12 @@ class TestSolver(unittest2.TestCase):
         res = Solver(self.fileName).solve()
         self.assertEquals(res, [])        
  
+    def testBadCharacters(self):
+        with self.assertRaises(AssertionError):
+            text = """22.2 ()"""
+            self.initFile(text)
+            Solver(self.fileName).solve()
+ 
     def testExample1(self):
         text = """22 (5(4(11(7()())(2()()))()) (8(13()())(4()(1()()))))"""
         self.initFile(text)
@@ -65,6 +71,12 @@ class TestSolver(unittest2.TestCase):
     def testBadTree(self):
         with self.assertRaises(TreeDefinitionException):
             text = """22 (5(4(11(7()())(2()()))()) (8(13()("""
+            self.initFile(text)
+            Solver(self.fileName).solve()
+
+    def testBadTree2(self):
+        with self.assertRaises(AssertionError):
+            text = """22"""
             self.initFile(text)
             Solver(self.fileName).solve()
             

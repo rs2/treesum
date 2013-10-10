@@ -80,6 +80,7 @@ class Solver(object):
             treeTuple = eval(evalText)
         except SyntaxError:
             raise TreeDefinitionException('Bad tree definition: {0}'.format(evalText))
+        assert isinstance(treeTuple, tuple) and len(treeTuple)==2, 'Invalid tree definition'
         return dict(zip(['testValue', 'tree'], treeTuple))
  
     @staticmethod
@@ -104,7 +105,7 @@ class Solver(object):
         """
             Read the file, parse the text and give an answer
             
-            :return: A list of booleans one for each tree in the file
+            :return: A list of booleans one for each tree in the file. One can easily convert these into yes/no.
         """
         # Load from file
         text = self._loadTextFromFile(self.fileName)
